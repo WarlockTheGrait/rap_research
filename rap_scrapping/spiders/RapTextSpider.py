@@ -25,6 +25,9 @@ class LastFMRapSpider(scrapy.Spider):
 
         # artists names
         names = response.selector.xpath("//h3[@class='big-artist-list-title']/a/text()").extract()
+        
+        # artists pictures
+        pictures = response.selector.xpath("//span[@class='avatar big-artist-list-avatar-desktop']/img/@src").extract()
 
         # num listeners of artist, will use it Farther to filter data
         num_listeners = response.selector.xpath("//p[@class='big-artist-list-listeners']/text()").extract()
