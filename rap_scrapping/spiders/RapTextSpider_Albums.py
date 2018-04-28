@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
-import scrapy
 import json
+
+import scrapy
 
 
 class LastFMRapSpider_Albums(scrapy.Spider):
     name = 'rap_text_scraping_albums'
-    start_url = 'https://www.last.fm/ru/tag/russian+rap/artists'
 
     def start_requests(self):
-        file = open("result_info.json", 'r')
+        filepath = self.settings['INIT_ARTISTS_INFO']
+        file = open(filepath, 'r')
         inform = json.loads(file.read())
         links = []
         for i in inform:
             links.append(i["link"])
+        file.close()  # ФАЙЛЫ ЗАКРЫВАЙ
         return [scrapy.Request(link + "/+albums", callback=self.get_albums) for link in
                 links]
-
-        # for (name, link) in zip(names, links):
-        # yield {"type": "artist_info", "name": name, "link": link}
 
     def get_albums(self, response):
         # parsing album page of artist

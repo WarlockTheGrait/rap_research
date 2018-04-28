@@ -11,6 +11,7 @@ def run():
     settings.set('FEED_FORMAT', 'json')
     settings.set('FEED_URI', 'result_songs.json')
     settings.set("FEED_EXPORT_ENCODING", 'utf-8')
+    settings.set("INIT_ALBUMS_INFO", "result_albums.json")
     configure_logging()
     runner = CrawlerRunner(settings)
     runner.crawl(RapTextSpider_Songs.LastFMRapSpider_Songs)

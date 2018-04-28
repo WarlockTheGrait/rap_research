@@ -11,6 +11,7 @@ def run():
     settings.set('FEED_FORMAT', 'json')
     settings.set('FEED_URI', 'result.json')
     settings.set("FEED_EXPORT_ENCODING", 'utf-8')
+    settings.set("CONCURRENT_REQUESTS ", 32)
     configure_logging()
     runner = CrawlerRunner(settings)
     runner.crawl(RapTextSpider.LastFMRapSpider)
