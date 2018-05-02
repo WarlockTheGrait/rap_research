@@ -24,15 +24,19 @@ class LastFMRapSpider(scrapy.Spider):
         links = [response.urljoin(link) for link in links]
 
         # artists names
+        # //*[@id="mantle_skin"]/div[4]/div/div[1]/section/ol/li[1]/div/h3/a
         names = response.selector.xpath("//h3[@class='big-artist-list-title']/a/text()").extract()
+
+        # artists pictures
+        pictures = response.selector.xpath("//span[@class='avatar big-artist-list-avatar-desktop']/img/@src").extract()
 
         # num listeners of artist, will use it Farther to filter data
         num_listeners = response.selector.xpath("//p[@class='big-artist-list-listeners']/text()").extract()
         num_listeners = [int(listeners.strip().replace(u'\xa0', "")) for listeners in num_listeners if
                          len(listeners.strip()) > 0]
 
-#        for link in links:
-#            yield scrapy.Request(link, callback=self.parse_concrete_artist_page)
+        #        for link in links:
+        #            yield scrapy.Request(link, callback=self.parse_concrete_artist_page)
 
         for (name, link, num_listeners_concrete) in zip(names, links, num_listeners):
             yield {"type": "artist_info", "name": name, "link": link, "listeners": num_listeners_concrete}
@@ -41,5 +45,4 @@ class LastFMRapSpider(scrapy.Spider):
     # find albums titles and years here https://www.last.fm/ru/music/Guf/+albums?page=2
     # store in json too
     def parse_concrete_artist_page(self, response):
-
         print("HAHAHA")

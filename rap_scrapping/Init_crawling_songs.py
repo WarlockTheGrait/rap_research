@@ -3,18 +3,18 @@ from scrapy.utils.log import configure_logging
 from scrapy.utils.project import get_project_settings
 from twisted.internet import reactor
 
-from rap_scrapping.spiders import RapTextSpider
+from rap_scrapping.spiders import RapTextSpider_Songs
 
 
 def run():
     settings = get_project_settings()
     settings.set('FEED_FORMAT', 'json')
-    settings.set('FEED_URI', 'result.json')
+    settings.set('FEED_URI', 'result_songs.json')
     settings.set("FEED_EXPORT_ENCODING", 'utf-8')
-    settings.set("CONCURRENT_REQUESTS ", 32)
+    settings.set("INIT_ALBUMS_INFO", "result_albums.json")
     configure_logging()
     runner = CrawlerRunner(settings)
-    runner.crawl(RapTextSpider.LastFMRapSpider)
+    runner.crawl(RapTextSpider_Songs.LastFMRapSpider_Songs)
 
     d = runner.join()
     d.addBoth(lambda _: reactor.stop())
