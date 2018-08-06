@@ -16,7 +16,7 @@ def getting_names():
 def search(names):
     api = genius.Genius('OjplsjHuJuBJiqa_KqAfUz12EaUXkd2ETQwTNf-9J82qcjYRLY7OCoIpJzDOmQtF')
     for i in names:
-        artist = api.search_artist(i) #вот здесь вот трабл с остановкой
+        artist = api.search_artist(i)
         file = artist.save_lyrics(format='json')
         function(file)
 
