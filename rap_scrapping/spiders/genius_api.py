@@ -1,5 +1,8 @@
 import lyricsgenius as genius
 import json
+from fuzzywuzzy import fuzz
+
+# getting texts of songs from www.genius.com
 
 
 def getting_names():
@@ -10,17 +13,28 @@ def getting_names():
     names = []
     for i in inform:
         names.append(i["name"])
-    search(names)
+    serch(names)
 
 
-def search(names):
+def serch(names):
     api = genius.Genius('OjplsjHuJuBJiqa_KqAfUz12EaUXkd2ETQwTNf-9J82qcjYRLY7OCoIpJzDOmQtF')
     for i in names:
-        artist = api.search_artist(i)
-        file = artist.save_lyrics(format='json')
-        write_file(file)
+        try:
+            artist = api.search_artist(i, take_first_result=True)
+            proc = fuzz.token_sort_ratio(i, artist.name)
+            strin = "Last.fm name: " + i + " ; Genius name: " + artist.name + " ratio: " + str(proc) + "\n"
+            f = open("result.txt", "a")
+            f.write(strin)
+            f.close()
+            file = artist.songs
+            function(file)
+        except:
+            f = open("result.txt", "a")
+            f.write("Nothing found for artist: " + i + "\n")
+            f.close()
 
-def write_file(file):
+
+def function(file):
     for i in file:
         artist = i.artist
         title = i.title
