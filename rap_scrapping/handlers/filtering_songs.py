@@ -5,7 +5,7 @@ import os
 
 def getting_songs():
     # getting names of songs
-    directory = '/home/ruslan/Загрузки/genius_songs'
+    directory = 'songs/genius_songs/texts'  # write path from you device
     files = os.listdir(directory)
     texts = []
 
@@ -25,6 +25,8 @@ def getting_songs():
 def filtering_texts(files, texts, directory):
     indices = []
     languages = []
+    
+    # detecting language of song
     for item in texts:
         try:
             lan = lang.detect(item)
