@@ -4,3 +4,4 @@
 2. After that run init_crawling_albums.py to get information about albums of found artists.
 3. Finally, run init_crawling_songs.py to get list of songs of found artists.
 4. To find texts of songs run Genius_api.py and wait :) 
+ываыввава
