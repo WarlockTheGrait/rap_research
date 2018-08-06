@@ -9,6 +9,7 @@ from rap_scrapping.spiders import LastFM__songs
 
 
 def run_artist_info():
+    # function for starting LastFM__artist_info
     settings = get_project_settings()
     settings.set('FEED_FORMAT', 'json')
     settings.set('FEED_URI', 'result.json')
@@ -27,6 +28,7 @@ def run_artist_info():
     
 
 def run_albums():
+    # function for starting LastFM__albums
     settings = get_project_settings()
     settings.set('FEED_FORMAT', 'json')
     settings.set('FEED_URI', 'result_albums.json')
@@ -45,6 +47,7 @@ def run_albums():
 
     
 def run_songs():
+    # function for starting LastFM__songs
     settings = get_project_settings()
     settings.set('FEED_FORMAT', 'json')
     settings.set('FEED_URI', 'result_songs.json')
@@ -61,4 +64,4 @@ def run_songs():
     
 
 if __name__ == '__main__':
-    run()
+    run_artist_info()
