@@ -6,6 +6,7 @@ from twisted.internet import reactor
 from rap_scrapping.spiders import LastFM__artist_info
 from rap_scrapping.spiders import LastFM__albums
 from rap_scrapping.spiders import LastFM__songs
+from rap_scrapping.spiders import Genius_api
 
 
 def run_artist_info():
@@ -61,6 +62,8 @@ def run_songs():
     d.addBoth(lambda _: reactor.stop())
 
     reactor.run()  # the script will block here until all crawling jobs are finished
+    
+    Genius_api.getting_names()
     
 
 if __name__ == '__main__':
