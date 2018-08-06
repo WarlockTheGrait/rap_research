@@ -18,14 +18,23 @@ def search(names):
     for i in names:
         artist = api.search_artist(i)
         file = artist.save_lyrics(format='json')
-        function(file)
+        write_file(file)
 
+def write_file(file):
+    for i in file:
+        artist = i.artist
+        title = i.title
+        song = i.lyrics
 
-def function(file):
-    print(file["songs"][0]["lyrics"])
-    f = open("text.txt", 'a')
-    f.write(file["songs"][0]["lyrics"])
-    f.close()
+        dict = {"artist": artist, "title": title, "text": song}
+
+        a = i.artist.replace(" ", "_")
+        t = i.title.replace(" ", "_")
+        filename = a + "__" + t + ".json"
+
+        f = open(filename, "w")
+        json.dump(dict, f, ensure_ascii=False)
+        f.close()
 
 
 if __name__ == '__main__':
