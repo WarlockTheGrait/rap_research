@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# getting info about russian rap artists from www.last.fm
+# example of artist page: https://www.last.fm/ru/music/Oxxxymiron
+# result: {"type": "artist_info", "name": name, "link": link, "listeners": num_listeners_concrete}  
 import scrapy
 
 
