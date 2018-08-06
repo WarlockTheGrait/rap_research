@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # getting songs of found artists from www.last.fm
 # needs results of searching albums
-# example of artist page: https: https://www.last.fm/ru/music/Oxxxymiron/+tracks
+# example of song page: https: https://www.last.fm/ru/music/Oxxxymiron/+tracks
 # result: {"type": "songs_info", "album": album, "artist": arist, "songs": song} 
 import json
 import scrapy
