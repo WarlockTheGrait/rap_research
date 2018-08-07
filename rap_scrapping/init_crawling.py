@@ -25,8 +25,6 @@ def run_artist_info():
 
     reactor.run()  # the script will block here until all crawling jobs are finished
     
-    run_albums()
-    
 
 def run_albums():
     # function for starting LastFM__albums
@@ -43,8 +41,6 @@ def run_albums():
     d.addBoth(lambda _: reactor.stop())
 
     reactor.run() # the script will block here until all crawling jobs are finished
-    
-    run_songs()
 
     
 def run_songs():
@@ -63,8 +59,9 @@ def run_songs():
 
     reactor.run()  # the script will block here until all crawling jobs are finished
     
-    Genius_api.getting_names()
-    
 
 if __name__ == '__main__':
     run_artist_info()
+    run_albums()  
+    run_songs()
+    Genius_api.getting_names()
