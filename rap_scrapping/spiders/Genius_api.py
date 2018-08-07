@@ -3,6 +3,7 @@ import json
 from fuzzywuzzy import fuzz
 
 # getting texts of songs from www.genius.com
+# result: JSON file with text of song {name of artist}__{name of song}.json
 
 
 def getting_names():
