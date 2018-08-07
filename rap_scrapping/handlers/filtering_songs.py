@@ -1,6 +1,8 @@
 import langdetect as lang
 import json
 import os
+# It's need to filter songs from www.genius.com? because there are a lot of wrong results:
+# wrong language, wrong artist(not russian), etc.
 
 
 def getting_songs():
